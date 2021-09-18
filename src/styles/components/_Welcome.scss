@@ -1,0 +1,19 @@
+@import "./../variables.scss";
+
+.welcome-box {
+    position: absolute;
+    top: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background-color: rgba($color: #2c2c2ca6, $alpha: 0.75);
+    width: 100vw;
+    height: 100vh;
+}
+.welcome {
+    width: 85vw;
+    height: 75vh;
+    background-color: $base-color;
+}
