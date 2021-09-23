@@ -1,23 +1,22 @@
-import React, { useState } from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
+import React, { useContext, useState } from "react";
+import { Context } from "../store/appContext";
 import "../../styles/home.scss";
 import { Welcome } from "../component/Welcome.jsx";
 
 export const Home = () => {
 	const [openModal, setOpenModal] = useState(true);
+	const { store, actions } = useContext(Context);
+	const getProject = async () => {
+		const response = await fetch(`${store.techPortUrl / view / 89555 / image}`);
+		return response;
+	};
 	return (
 		<div className="home">
 			{openModal ? (
 				<Welcome modal={openModal} setModal={setOpenModal} />
 			) : (
 				<React.Fragment>
-					<h1>Hello Rigo!</h1>
-					<p>
-						<img src={rigoImage} />
-					</p>
-					<a href="#" className="btn btn-success">
-						If you see this green button, bootstrap is working
-					</a>
+					<img src={`${store.techPortUrl}/view/93531/image`} alt={""} />
 				</React.Fragment>
 			)}
 		</div>

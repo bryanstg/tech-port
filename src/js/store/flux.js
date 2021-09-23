@@ -1,6 +1,12 @@
+const apiUri = process.env.API_URI;
+const apiKey = process.env.API_KEY;
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			apiUri: apiUri,
+			apiKey: apiKey,
+			techPortUrl: "https://techport.nasa.gov/",
 			demo: [
 				{
 					title: "FIRST",
