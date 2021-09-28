@@ -1,3 +1,10 @@
 @import "./variables.scss";
-@import "./views/NavBar";
+@import "./components/WelcomeModal";
 @import "./components/Welcome";
+
+@import "./views/NavBar";
+@import "./views/Home";
+
+body {
+    background-color: $base-color;
+}
