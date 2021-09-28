@@ -5,8 +5,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			apiUri: apiUri,
-			apiKey: apiKey,
 			techPortUrl: "https://techport.nasa.gov/",
+			projects: [],
 			demo: [
 				{
 					title: "FIRST",
@@ -43,6 +43,39 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+			getAllProjects: async () => {
+				//Get all the projects availables
+				const store = getStore();
+				try {
+					const url = `${store.apiUri}/projects?api_key=${apiKey}`;
+					const response = await fetch(url);
+					if (response.ok) {
+						console.log("response is ok");
+						const body = await response.json();
+						let filteredProjects = [];
+						for (let project of body.projects) {
+							const projectYear = project.lastUpdated.split("-");
+							if (projectYear[1] > 8 && projectYear[0] >= 2021) {
+								filteredProjects.push(project);
+							} else {
+								continue;
+							}
+						}
+						setStore({
+							...store,
+							projects: filteredProjects
+						});
+					}
+				} catch (error) {
+					throw new Error(`Something happened trying to fetch projects: ${error}`);
+				}
+			},
+			getProject: async id => {
+				//Get a specific project by id
+				const store = getStore();
+				const response = await fetch(`${store.apiUri}/projects/${id}`);
+				const project = await response.json();
 			}
 		}
 	};
