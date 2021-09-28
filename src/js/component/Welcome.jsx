@@ -1,52 +1,48 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { NasaLogo } from "./../svg/NasaLogo.jsx";
+import React, { useEffect, useState } from "react";
 
-export const Welcome = ({ modal, setModal }) => {
+export const Welcome = () => {
+	const [APODImage, setAPODImage] = useState({});
+	const [imageModal, setImageModal] = useState(false);
+	const apiKey = process.env.API_KEY;
+	const getAPOD = async () => {
+		const APOD_URL = "https://api.nasa.gov/planetary/apod";
+		const response = await fetch(`${APOD_URL}?api_key=${apiKey}`);
+		if (response.ok) {
+			const body = await response.json();
+			setAPODImage(body);
+		}
+	};
+
+	useEffect(() => {
+		getAPOD();
+	}, []);
 	return (
 		<div className="welcome-box">
-			<div className="welcome">
-				<h2 className="welcome__title">{`Welcome to Tech Port | NASA`}</h2>
-				<p className="welcome__text">
-					{`This is not the official website of the Tech Port by NASA. This is a rebuild web project made with
-					the public `}
-					<a
-						href="https://api.nasa.gov/"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="welcome__text--a">
-						{"NASA API"}
-					</a>
-					{". If you want to visit the original website, please "}
-					<a
-						href="https://techport.nasa.gov/home"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="welcome__text--a">
-						click here
-					</a>
-				</p>
-				<p className="welcome__text">
-					{"Made with ❤ by "}
-					<a
-						href="https://www.linkedin.com/in/bryan-garcia-fullstack/"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="welcome__text--a welcome__bryan">
-						{"Bryan García"}
-					</a>
+			<div className="welcome__info">
+				<h1 className="welcome__info--title">{`Welcome to Tech Port`}</h1>
+				<p className="welcome__info--text">
+					{`Techport allows the public to discover the technologies NASA is working on every day to explore space, understand the universe, and improve aeronautics. NASA is developing technologies in areas such as propulsion, nanotechnology, robotics, and human health`}
 					.
 				</p>
-				<button className="welcome__button" onClick={event => setModal(false)}>{`Let's go`}</button>
-				<div className="welcome__nasa-logo">
-					<NasaLogo />
+			</div>
+			<div className="welcome__img">
+				<img src={APODImage.url} alt="" />
+				<div className="image-modal">
+					<div className={`welcome__img--info ${imageModal ? "image-modal__open" : "image-modal__close"}`}>
+						<h4>{`Title: ${APODImage.title}`}</h4>
+						<p>{APODImage.explanation}</p>
+						<p>{`Date: ${APODImage.date}`}</p>
+					</div>
+					<div
+						onClick={event => {
+							setImageModal(prevStatus => !prevStatus);
+						}}
+						className="welcome__img--button">
+						{`${imageModal ? "Close " : "Image Info"}`}
+					</div>
 				</div>
 			</div>
+			<div className="welcome__button">{`See more`}</div>
 		</div>
 	);
-};
-
-Welcome.propTypes = {
-	modal: PropTypes.bool,
-	setModal: PropTypes.func
 };
