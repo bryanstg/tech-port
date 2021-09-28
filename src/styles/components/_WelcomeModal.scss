@@ -1,0 +1,75 @@
+@import "./../variables.scss";
+
+.w-modal-box {
+    position: absolute;
+    top: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background-color: rgba($color: #2c2c2ca6, $alpha: 0.75);
+    width: 100vw;
+    height: 100vh;
+}
+.w-modal {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    max-width: 40rem;
+    max-height: 35rem;
+    width: 85%;
+    height: 75%;
+    min-height: 30rem;
+    background-color: $base-color;
+    border-radius: 1rem;
+
+    padding: 10vmin;
+    color: $secundary-color;
+}
+.w-modal__nasa-logo {
+    margin-top: 0.5rem;
+}
+.w-modal__title {
+    border-bottom: 3px solid $nasa-blue;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    
+    font-size: 1.85rem;
+}
+.w-modal__text {
+    letter-spacing: 0.02rem;
+
+}
+.w-modal__text--a {
+    color: $nasa-blue-2;
+    font-weight: 700;
+}
+.w-modal__bryan {
+    color: $nasa-red;
+    font-size: 1.1rem;
+    letter-spacing: 0.03rem;
+}
+.w-modal__button {
+    margin: 1rem 0;
+
+    min-width: 10rem;
+    width: 45%;
+    max-width: 15rem;
+    padding: 0.5rem 2.5rem;
+    height: 2.7rem;
+
+    color: $secundary-color;
+    font-weight: 700;
+
+    background-color: $nasa-blue-2;
+    border-radius: 1.5rem;
+    border: 0;
+    box-shadow: 2px 2px 1px #FFF;
+    &:hover {
+        background-color: $nasa-blue;
+        box-shadow: 1px 1px 1px #FFF;
+    }
+}

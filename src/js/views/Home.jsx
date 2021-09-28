@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.scss";
+import { WelcomeModal } from "../component/WelcomeModal.jsx";
 import { Welcome } from "../component/Welcome.jsx";
 
 export const Home = () => {
-	const [openModal, setOpenModal] = useState(true);
+	const [openModal, setOpenModal] = useState(false);
 	const { store, actions } = useContext(Context);
 	const getProject = async () => {
 		const response = await fetch(`${store.techPortUrl / view / 89555 / image}`);
@@ -13,12 +14,16 @@ export const Home = () => {
 	return (
 		<div className="home">
 			{openModal ? (
-				<Welcome modal={openModal} setModal={setOpenModal} />
+				<WelcomeModal modal={openModal} setModal={setOpenModal} />
 			) : (
-				<React.Fragment>
-					<img src={`${store.techPortUrl}/view/93531/image`} alt={""} />
-				</React.Fragment>
+				<div className="background">
+					<Welcome />
+				</div>
 			)}
 		</div>
 	);
 };
+
+{
+	/* <img src={`${store.techPortUrl}/view/93531/image`} alt={""} /> */
+}
