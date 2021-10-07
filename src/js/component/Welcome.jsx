@@ -17,32 +17,40 @@ export const Welcome = () => {
 		getAPOD();
 	}, []);
 	return (
-		<div className="welcome-box">
-			<div className="welcome__info">
-				<h1 className="welcome__info--title">{`Welcome to Tech Port`}</h1>
-				<p className="welcome__info--text">
-					{`Techport allows the public to discover the technologies NASA is working on every day to explore space, understand the universe, and improve aeronautics. NASA is developing technologies in areas such as propulsion, nanotechnology, robotics, and human health`}
-					.
-				</p>
-			</div>
-			<div className="welcome__img">
-				<img src={APODImage.url} alt="" />
-				<div className="image-modal">
-					<div className={`welcome__img--info ${imageModal ? "image-modal__open" : "image-modal__close"}`}>
-						<h4>{`Title: ${APODImage.title}`}</h4>
-						<p>{APODImage.explanation}</p>
-						<p>{`Date: ${APODImage.date}`}</p>
-					</div>
-					<div
-						onClick={event => {
-							setImageModal(prevStatus => !prevStatus);
-						}}
-						className="welcome__img--button">
-						{`${imageModal ? "Close " : "Image Info"}`}
-					</div>
+		<>
+			<div className="welcome-box">
+				<div className="welcome__info">
+					<h1 className="welcome__info--title">
+						{"Welcome to "}
+						<br /> {"Tech Port"}
+					</h1>
+					<p className="welcome__info--text">
+						{`Techport allows the public to discover the technologies NASA is working on every day to explore space, understand the universe, and improve aeronautics. NASA is developing technologies in areas such as propulsion, nanotechnology, robotics, and human health`}
+						.
+					</p>
+				</div>
+				<div className="welcome__img">
+					<img
+						src={`https://epic.gsfc.nasa.gov/archive/natural/2015/10/31/png/epic_1b_20151031074844.png`}
+						alt=""
+					/>
+					{/* <div className="image-modal">
+						<div className={`welcome__img--info ${imageModal ? "image-modal__open" : "image-modal__close"}`}>
+							<h4>{`Title: ${APODImage.title}`}</h4>
+							<p>{APODImage.explanation}</p>
+							<p>{`Date: ${APODImage.date}`}</p>
+						</div>
+						<div
+							onClick={event => {
+								setImageModal(prevStatus => !prevStatus);
+							}}
+							className="welcome__img--button">
+							{`${imageModal ? "Close " : "Image Info"}`}
+						</div>
+					</div> */}
 				</div>
 			</div>
 			<div className="welcome__button">{`See more`}</div>
-		</div>
+		</>
 	);
 };
