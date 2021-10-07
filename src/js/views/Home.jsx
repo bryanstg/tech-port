@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import "../../styles/home.scss";
 import { WelcomeModal } from "../component/WelcomeModal.jsx";
 import { Welcome } from "../component/Welcome.jsx";
+import { Projects } from "../component/Projects.jsx";
 
 export const Home = () => {
 	const [openModal, setOpenModal] = useState(false);
@@ -18,6 +19,7 @@ export const Home = () => {
 			) : (
 				<div className="background">
 					<Welcome />
+					<Projects />
 				</div>
 			)}
 		</div>
